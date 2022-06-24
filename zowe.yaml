@@ -1,0 +1,31 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: zowecli
+  labels:
+    app.kubernetes.io/version: "0.1"
+  annotations:
+    tekton.dev/pipelines.minVersion: "0.12.1"
+    tekton.dev/displayName: Zowe CLI
+    tekton.dev/categories: CLI
+    tekton.dev/tags: zowe, z/OS
+    tekton.dev/platforms: "linux/amd64,linux/s390x,linux/ppc64le"
+spec:
+  description: >-
+    This Task can be used to run the Zowe CLI to interact with a z/OS LPAR.
+  workspaces:
+    - name: source
+      description: The workspace consisting of the gradle project.
+    - name: profiles-directory
+      optional: true
+      description: zowe directory with profiles, config.
+  params:
+    - name: command
+      description: Zowe command to run
+      type: string
+      default: -h
+  steps:
+    - name: zowe-cli
+      image: quay.io/crshnburn/zowe-cli:latest
+      workingDir: $(workspaces.source.path)
+      script: zowe $(params.command)
