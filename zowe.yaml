@@ -15,6 +15,7 @@ spec:
     This Task can be used to run the Zowe CLI to interact with a z/OS LPAR.
   workspaces:
     - name: source
+      optional: true
       description: The workspace consisting of the gradle project.
     - name: profiles-directory
       optional: true
