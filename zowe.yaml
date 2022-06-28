@@ -17,9 +17,10 @@ spec:
     - name: source
       optional: true
       description: The workspace consisting of the gradle project.
-    - name: profiles-directory
+    - name: zosmf-profiles
       optional: true
       description: zowe directory with profiles, config.
+      mountPath: /root/.zowe/profiles/zosmf
   params:
     - name: command
       description: Zowe command to run
