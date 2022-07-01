@@ -28,6 +28,6 @@ spec:
       default: -h
   steps:
     - name: zowe-cli
-      image: quay.io/crshnburn/zowe-cli:latest
+      image: quay.io/crshnburn/zowe-cli:zowe-v2-lts@sha256:4e418b660dc42c13d31f18711643d873a2008fb928fc97d9d316fdc37ffd868f
       workingDir: $(workspaces.source.path)
       script: zowe $(params.command)
